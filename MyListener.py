@@ -1,9 +1,10 @@
 # coding: utf-8
 # Created by firefoxwang 
 # Data:  2017/9/17
-import projectHelper
-import publicCommon
 
+from projectHelper.db_operater import db_operater
+from publicCommon.mail_sender import mail_sender
+from publicCommon.get_config import get_config
 
 class MyListener:
     """
@@ -18,9 +19,9 @@ class MyListener:
         self.suite_info = []  # ，统计用力个数，分别失败跟成功个数,时间
         self.suite_status = ''  # 整个projcet是成功还是失败的
         self.path = ''  # 生成的报告路径
-        self.dbOperater = projectHelper.db_operater.DbOperater()
-        self.mailSender = publicCommon.mail_sender.SendMail()
-        self.configGetter =  publicCommon.get_config.GetConfig()
+        self.dbOperater = db_operater.DbOperater()
+        self.mailSender = mail_sender.SendMail()
+        self.configGetter = get_config.GetConfig()
 
     def end_test(self, name, attrs):
         case_dict = {name: "PASS" if attrs['status'] == 'PASS' else attrs['message']}
