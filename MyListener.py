@@ -40,5 +40,5 @@ class MyListener:
     def close(self):
         global_config = self.configGetter.get_goabal_config()
         self.dbOperater.write_db_operation(self.name, self.case_info, self.suite_info, self.suite_status, global_config)
-        self.mailSender.send_mail(self.name, self.case_info, self.suite_info, global_config)
+        self.mailSender.send_mail(self.name, self.case_info, self.suite_info, self.path, global_config)
 
