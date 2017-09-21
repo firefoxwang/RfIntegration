@@ -8,7 +8,6 @@ from sqlalchemy import Column, String, DateTime, Integer
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 
-
 class DbOperater():
     def __init__(self):
         self.config = "sqlite:///Soraka.db"  # 在本目录下生成一个sql数据库 类似engine://user:password@host:port/database
@@ -50,8 +49,8 @@ class DbOperater():
                 yield session
                 session.commit()
             except:
-                session.rollback()
-                raise
+                    session.rollback()
+                    raise
             finally:
                 session.close()
 
