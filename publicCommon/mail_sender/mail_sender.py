@@ -22,7 +22,7 @@ class SendMail:
 #name, case_info, suite_info, path, suite_status,  global_config
     @contextmanager
     def mail_sender(self, name, case_info, suite_info, path, suite_status,global_config):
-        self.msg = MIMEText(self.htmltemple.parserhtml(name, case_info, suite_info, path, suite_status,global_config),  'html', 'utf-8')
+        self.msg = MIMEText(self.htmltemple.parserhtml(name, case_info, suite_info, path, suite_status, global_config),  'html', 'utf-8')
         self.msg['From'] = Header(u"Robtfromwork Integration", 'utf-8').encode()
         self.msg['To'] = u"自动化收件人".encode("utf-8")
         self.msg['Subject'] = Header(u'自动化测试报告', 'utf-8').encode()
@@ -43,4 +43,4 @@ class SendMail:
 
 if __name__ == '__main__':
     demo = SendMail()
-    demo.send_mail('Testsuit1',[{u'testcase01': 'PASS'}, {u'testcase02': u"Teardown failed:\nVariable '${a}' not found."}],'2 critical tests, 1 passed, 1 failed\n2 tests total, 1 passed, 1 failed',4,'FAIL','zhazha')
+    demo.send_mail('Testsuit1',[{u'testcase01': 'PASS'}, {u'testcase02': 'PASS'}],['2 critical tests, 2 passed, 0 failed\n2 tests total, 2 passed, 0 failed', '20170922 10:07:33.166', '20170922 10:07:33.181'],u'c:\\users\wangli~1\\appdata\local\\temp\RIDEyde2ig.d\\log-20170922-102939.html' ,'PASS', 1)

@@ -90,7 +90,11 @@ class MailTemple:
 
         </tr>
         %(test_list)s
-            <td>总计</td>
+        <td>总计</td>
+        <td>pass</td>
+        <td>fail</td>
+        </tr>
+        <tr>
             <td>%(count)s</td>
             <td>%(Pass)s</td>
             <td>%(fail)s</td>
@@ -98,7 +102,7 @@ class MailTemple:
         </tr>
         </table>
         '''
-        self.testlist = u"""<tr><td>%(case_name)s</td><td>%(case_status)s</td></tr>"""
+        self.testlist = u"<tr><td>%(case_name)s</td><td>%(case_status)s</td></tr>"
 
     def _case_parser(self, case_info):
         """
@@ -110,7 +114,7 @@ class MailTemple:
         for i in case_info:
             for k, v in i.iteritems():
                 row = self.testlist % dict(case_name=k, case_status=v)
-                testrow.append(row)
+                testrow.append(row.encode('utf-8'))
         return testrow
 
     def _teststatis(self, suite_info, case_info):
@@ -120,17 +124,22 @@ class MailTemple:
         :return:_teststatis模板信息
         """
         p = re.compile(r'\d+')
-        suite_list = p.findall(suite_info)
+        suite_list = p.findall(suite_info[0])  #suite_info是一个list
         testrow = self._case_parser(case_info)
-        list_suite = self.teststatis % dict(test_list=testrow, count=suite_list[0], Pass=suite_list[1],
+        list_suite = self.teststatis % dict(test_list=''.join(testrow),
+                                            count=suite_list[0],
+                                            Pass=suite_list[1],
                                             fail=suite_list[2])
         return list_suite
 
-    #
     def parserhtml(self, name, case_info, suite_info, path, suite_status, global_config):
         list_suite = self._teststatis(suite_info, case_info)
         generator = 'RfIntegrationTest %s' % self.version
-        self.output = self.html_temple % dict(title=('[AutoTest]' + name + 'is' + suite_status), generator=generator,
-                                              stylesheet=self.stylesheet_temple, teststatis=list_suite)
-        print self.output
+        self.output = self.html_temple % dict(title=('[AutoTest]' + name + 'is' + suite_status),
+                                              generator=generator,
+                                              stylesheet=self.stylesheet_temple,
+                                              teststatis=list_suite)
+        # output是uncode字符串，在ride里直接打印会报错，这边重新编码成utf-8
+        # 在pycharm里打印不会报错，暂未深入查看
+        print self.output.encode('utf-8')
         return self.output
