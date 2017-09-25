@@ -8,6 +8,7 @@ class GetConfig(object):
     def __init__(self, name):
         cfg = ConfigParser()
         cfg.read('./publicCommon/get_config/public_config.ini')
+        #cfg.read(r'D:\python_project\RfIntegration\publicCommon\get_config\public_config.ini')
         self.name = name
         self.publicdb = cfg.get('soraka', 'config')
         self.from_addr = cfg.get('mail', 'from_addr')
