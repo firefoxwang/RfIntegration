@@ -35,9 +35,9 @@ class MyListener:
         self.suite_info = []  # ，统计用力个数，分别失败跟成功个数,时间
         self.suite_status = ''  # 整个projcet是成功还是失败的
         self.path = ''  # 生成的报告路径
-        self.dbOperater = db_operater.DbOperater()
-        self.mailSender = mail_sender.SendMail()
-        self.configGetter = get_config.GetConfig()
+        self.dbOperater = db_operater.DbOperater(self.name)
+        self.mailSender = mail_sender.SendMail(self.name)
+        self.configGetter = get_config.GetConfig(self.name)
 
     def end_test(self, name, attrs):
         case_dict = {name: "PASS" if attrs['status'] == 'PASS' else attrs['message']}

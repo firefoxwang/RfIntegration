@@ -7,10 +7,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime, Integer
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
+from publicCommon.get_config import get_config
 
-class DbOperater():
-    def __init__(self):
-        self.config = "sqlite:///Soraka.db"  # 在本目录下生成一个sql数据库 类似engine://user:password@host:port/database
+class DbOperater(object):
+    def __init__(self, name):
+        self.name = name
+        self.get_config = get_config.GetConfig(name)
+        self.config = self.get_config.get_publicdb()  # 在本目录下生成一个sql数据库 类似engine://user:password@host:port/database
         self.engine = create_engine(self.config, echo=False)  # 真实环境设置为false
         self.Base = declarative_base()  # 创建一个声明类，映射类到表的关系。
 
@@ -49,8 +52,8 @@ class DbOperater():
                 yield session
                 session.commit()
             except:
-                    session.rollback()
-                    raise
+                session.rollback()
+                raise
             finally:
                 session.close()
 
