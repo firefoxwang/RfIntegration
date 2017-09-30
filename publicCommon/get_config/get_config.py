@@ -1,14 +1,16 @@
 # coding: utf-8
 # Created by firefoxwang 
 # Data:  2017/9/19
+import os
 from ConfigParser import ConfigParser
 
 
 class GetConfig(object):
     def __init__(self, name):
+        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'public_config.ini')
+        # 字符串拼接文件路径
         cfg = ConfigParser()
-        cfg.read('./publicCommon/get_config/public_config.ini')
-        #cfg.read(r'D:\python_project\RfIntegration\publicCommon\get_config\public_config.ini')
+        cfg.read(config_path)
         self.name = name
         self.publicdb = cfg.get('soraka', 'config')
         self.from_addr = cfg.get('mail', 'from_addr')
