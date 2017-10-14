@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/firefoxwang/RfIntegration.svg?branch=master)](https://travis-ci.org/firefoxwang/RfIntegration)
 
 ##RfIntegration是什么?
 
