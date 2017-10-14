@@ -1,0 +1,9 @@
+*** Settings ***
+Suite Setup
+Test Setup
+Test Teardown
+Resource          setupdemo.robot
+
+*** Test Cases ***
+testcase02
+    log    pass

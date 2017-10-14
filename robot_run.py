@@ -6,4 +6,5 @@
 """
 from robot import run
 from MyListener import MyListener
-run(u"C:\\Users\\wanglingbo\\TestProject\\Testsuit1", listener=MyListener(u'Testsuit1'))
+#run(u"TestProject\\Testsuit1", listener=MyListener(u'Testsuit1'))
+print("hello")
