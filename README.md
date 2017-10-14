@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/firefoxwang/RfIntegration.svg?branch=master)](https://travis-ci.org/firefoxwang/RfIntegration)
+[![Coverage Status](https://coveralls.io/repos/github/firefoxwang/RfIntegration/badge.svg?branch=master)](https://coveralls.io/github/firefoxwang/RfIntegration?branch=master)
 
 ##RfIntegration是什么?
 
