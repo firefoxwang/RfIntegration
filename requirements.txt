@@ -24,7 +24,7 @@ pycparser==2.18
 pyOpenSSL==17.3.0
 pytz==2017.2
 PyYAML==3.12
-requests==2.18.4
+requests==2.20.0
 robotframework==3.0.2
 robotframework-ride==1.5.2.1
 six==1.11.0
